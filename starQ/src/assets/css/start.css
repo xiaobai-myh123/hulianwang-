@@ -1,0 +1,306 @@
+* {
+  font-family: "YouYuan", "幼圆", sans-serif;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased; /* 字体去除锯齿状 更圆滑 */
+}
+
+a {
+  color: black;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+#start {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  background: url("../img/starQ-bg.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.content {
+  text-align: center;
+  width: 100%;
+}
+.slide-bar img,
+.jump-font,
+.btn-box {
+  position: relative;
+  opacity: 0;
+  animation: fill-img-show 1.6s 1.2s forwards;
+}
+.slide-bar::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slide-in-out 1.5s cubic-bezier(0.75, 0, 0, 1) forwards;
+}
+
+@keyframes slide-in-out {
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  50.1% {
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+@keyframes fill-img-show {
+  to {
+    opacity: 1;
+  }
+}
+.title img,
+.subtitle img {
+  width: 300px;
+  height: 150px;
+}
+.content .title {
+  margin-top: 2%;
+}
+.content .title::before {
+  background-color: #f5e34075;
+}
+.content .subtitle img {
+  animation-delay: 2.7s;
+}
+.content .subtitle::before {
+  background-color: #b2d9eb65;
+  animation-delay: 1.7s;
+}
+.content .begin::before {
+  background-color: rgba(238, 206, 213, 0.384);
+  animation-delay: 3.5s;
+}
+.content .begin .jump-font {
+  animation-delay: 4.8s;
+}
+.content .begin .btn-box {
+  animation-delay: 5.5s;
+}
+
+.footer {
+  position: fixed;
+  height: auto;
+  width: 100%;
+  bottom: 0;
+}
+/* ------------- jump-font -------------- */
+
+.jump-font {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 3.5em;
+  margin-top: 5%;
+  letter-spacing: 5px;
+}
+.jump-font span {
+  text-shadow: 0 1px #bbb, 0 2px #bbb, 0 3px #bbb, 0 4px #bbb, 0 5px #bbb,
+    0 6px transparent, 0 7px transparent, 0 8px transparent, 0 9px transparent,
+    0 10px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(20px);
+  animation: bounce 0.3s ease infinite alternate;
+}
+
+@keyframes bounce {
+  to {
+    text-shadow: 0 1px #bbb, 0 2px #bbb, 0 3px #bbb, 0 4px #bbb, 0 5px #bbb,
+      0 6px #bbb, 0 7px #bbb, 0 8px #bbb, 0 9px #bbb,
+      0 50px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+  }
+}
+
+/* ------------ button -------------- */
+.btn-box {
+  margin-top: 4%;
+  margin-bottom: 2.5%;
+}
+.btn {
+  position: relative;
+  --hue: 190;
+  --btn-bg-color: hsl(var(--hue), 100%, 50%);
+  --btn-bg-color-darker: hsl(var(--hue), 100%, 46%);
+  padding: 0.6rem 1.5rem;
+  margin: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  text-decoration: none;
+  background-color: var(--btn-bg-color);
+  border: 1px solid var(--btn-bg-color);
+  border-radius: 4px;
+  box-shadow: 0 0.1px 0.7px rgba(233, 96, 30, 0.141),
+    0 0.1px 1.7px rgba(233, 203, 30, 0.202),
+    0 0.3px 3.1px rgba(233, 152, 30, 0.25),
+    0 0.4px 5.6px rgba(233, 186, 30, 0.298),
+    0 0.8px 10.4px rgba(233, 179, 30, 0.359), 0 2px 25px rgba(255, 153, 19, 0.5);
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+}
+.btn-hue {
+  --hue: 404;
+}
+.btn-bubbles {
+  overflow: visible;
+  transition: transform ease-in 0.1s, background-color ease-in 0.1s,
+    box-shadow ease-in 0.25s;
+}
+.btn-bubbles::before {
+  position: absolute;
+  content: "";
+  left: -2em;
+  right: -2em;
+  top: -2em;
+  bottom: -2em;
+  transition: ease-in-out 0.5s;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%),
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--btn-bg-color) 20%,
+      transparent 30%
+    ),
+    radial-gradient(circle, var(--btn-bg-color) 20%, transparent 20%);
+  background-size: 14% 13%, 16% 17%, 15% 13%, 13% 19%, 11% 13%, 12% 11%, 17% 14%,
+    17% 19%, 14% 16%, 15% 19%, 10% 15%, 17% 15%, 15% 15%, 19% 14%, 10% 20%,
+    19% 15%;
+  background-position: 18% 40%, 20% 31%, 30% 30%, 40% 30%, 50% 30%, 57% 30%,
+    65% 30%, 80% 32%, 15% 60%, 83% 60%, 18% 70%, 25% 70%, 41% 70%, 50% 70%,
+    64% 70%, 80% 71%;
+  animation: bubbles ease-in-out 0.75s forwards;
+}
+.btn-bubbles:active {
+  transform: scale(0.95);
+  background: var(--btn-bg-color-darker);
+}
+.btn-bubbles:active::before {
+  animation: none;
+  background-size: 0;
+}
+
+@keyframes bubbles {
+  0% {
+    background-position: 18% 40%, 20% 31%, 30% 30%, 40% 30%, 50% 30%, 57% 30%,
+      65% 30%, 80% 32%, 15% 60%, 83% 60%, 18% 70%, 25% 70%, 41% 70%, 50% 70%,
+      64% 70%, 80% 71%;
+  }
+  50% {
+    background-position: 10% 44%, 0% 20%, 15% 5%, 30% 0%, 42% 0%, 62% -2%,
+      75% 0%, 95% -2%, 0% 80%, 95% 55%, 7% 100%, 24% 100%, 41% 100%, 55% 95%,
+      68% 96%, 95% 100%;
+  }
+  100% {
+    background-position: 5% 44%, -5% 20%, 7% 5%, 23% 0%, 37% 0, 58% -2%, 80% 0%,
+      100% -2%, -5% 80%, 100% 55%, 2% 100%, 23% 100%, 42% 100%, 60% 95%, 70% 96%,
+      100% 100%;
+    background-size: 0% 0%;
+  }
+}
+
+/* ------------- 约束屏幕尺寸 ------------- */
+@media screen and (max-width: 580px) {
+  .jump-font {
+    font-size: 3em;
+    margin-bottom: 10%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .jump-font {
+    font-size: 2em;
+    margin-bottom: 20%;
+  }
+  .title img,
+  .subtitle img {
+    width: 160px;
+    height: 80px;
+  }
+  .btn-box {
+    margin-bottom: 10%;
+  }
+}
