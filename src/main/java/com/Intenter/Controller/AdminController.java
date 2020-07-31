@@ -85,8 +85,8 @@ public class AdminController {
     
     @GetMapping("findAll")
     public ResponseEntity<IPage<User>> findAll(
-            @RequestParam("current") Integer current,
-            @RequestParam("size") Integer size){
+            @RequestParam(name = "current",required = true ,defaultValue = "1") Integer current,
+            @RequestParam(name = "size",required = true ,defaultValue = "10") Integer size){
         IPage<User> userIPage = adminService.findAll(current,size);
         return ResponseEntity.ok(userIPage);
     }

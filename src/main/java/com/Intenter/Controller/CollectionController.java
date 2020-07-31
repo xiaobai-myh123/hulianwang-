@@ -6,6 +6,7 @@ import com.Intenter.Pojo.CollectionidUserid;
 import com.Intenter.Pojo.User;
 import com.Intenter.Service.CollectionService;
 import com.Intenter.Service.UserService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,11 +51,11 @@ public class CollectionController {
      * @return list<collection></>
      */
     @GetMapping("findAllState0")
-    public ResponseEntity<List<Collection>> findAllState0(
-            @RequestParam("current") Integer current,
-            @RequestParam("size") Integer size
+    public ResponseEntity<IPage<Collection>> findAllState0(
+            @RequestParam( name = "current",required = true ,defaultValue = "1") Integer current,
+            @RequestParam(name = "size",required = true ,defaultValue = "10") Integer size
     ){
-        List<Collection> collectionList = collectionServer.findAllState0(current,size);
+        IPage<Collection> collectionList = collectionServer.findAllState0(current,size);
         return ResponseEntity.ok(collectionList);
     }
     /**
