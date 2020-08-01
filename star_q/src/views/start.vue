@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     useStopExe() {
-      var jump = "让每一个?都能起飞";
+      var jump = "让每个?都能起飞";
       var letters = jump.split("");
       letters.forEach((letter, i) => {
         var span = document.createElement("span");
